@@ -162,4 +162,84 @@ In this code, `How are you?` will be printed. This is because the first statemen
 
 ## Loops
 
+18. Given the below Object, write a for...in loop that will iterate through it and print out the value of the property if the property starts with the letter r, or if the value of that property is an odd number.  
+    - [(This should be in a JS file part1-question18.js)](/part1/part1-question18.js)
 
+```js
+let statistics = {
+    redCars: 21,
+    blueCars: 45,
+    greenCars: 12,
+    raceCars: 5,
+    blackCars: 40,
+    rareCars: 2
+}
+```
+---
+
+## Functions
+
+19. If the function below is called with the following parameters modifyArray([1,2,3], doSomething), what will be the result? Briefly walk through how you arrived at that result. 
+
+```js
+function modifyArray(array, callback){
+    const newArr = [];
+    for (let i = 0; i < array.length; i++){
+        newArr.push(callback(array[i], function(x) {
+            return x * 2;
+        }));
+    }
+    return newArr;
+}
+
+function doSomething(num, callback) {
+    return callback(nums + 2);
+}
+```
+
+I got `[6, 8, 10]`. Let's start by looking at modifyArray() when we input [1,2,3], and doSomething. The length of `array` is 3, and callback() just means doSomething(). So, what we do is, we set the first 3 indices of newArr to whatever happens when we call doSomething(array[i], function(x) {return x*2;}).
+
+The first thing that we do is we call doSomething() on array[0], which is 1. This gives us:
+- return callback(1 + 2)
+- ---> return function(3){ return 3 * 2;}
+- return 6
+
+Thus the first element in newArr is 6.
+
+Simply repeat the process for 2 and 3. We can see that we can simplify 
+
+```doSomething(n,function(x){return x*2;})``` to mean (n + 2) * 2. It's currently just very strange logically.
+
+If we apply this logic, we get that doSomething(2, ...) = 8, and doSomething(3, ...) = 10.
+
+Thus, newArr = `[6, 8, 10]`, and that's what we return.
+
+---
+
+## setInterval(), setTimeout(), clearTimeout()
+
+20. This program only prints out the time once when executed. Modify this code such that the program prints out the time every second.  [(This should be a JS file - part1-question20.js)](part1-question20.js)
+
+```js
+let d = new Date();
+let time = d.toLocaleTimeString();
+console.log(time)
+```
+
+21. What is the output of this code?
+
+```js
+function printNums(){
+    console.log(1);
+    setTimeout(function() { console.log(2);}, 1000);
+    setTimeout(function() { console.log(3);}, 0);
+    console.log(4);
+}
+
+printNums();
+```
+The numbers printed out are in the order ***1, 4, 3, 2***. Why is this the case? Well, 1 is the first character to be printed, with no setTimeout function. The next line to execute prints 2, but with a delay of one second, so it's scheduled now. After that, the next line to execute prints 3, but with a setTimeout function and delay of 0. What does this mean? Well this means that it will be "next in queue" to execute, once there is no code running and the queue is "polled". A little strange, but basically it just means that once we're done with the code that executes no matter what, 3 will be printed. So we execute the next and last line of code, which just prints 4. 
+
+Now, we have 1 printed, 4 printed, 3 next in queue to be printed, and 2 to be printed in a second. So, now that we're done executing code, we can poll the event queue and find that we need to print 3, so we do! Then, we wait a second and print 2.
+
+Thus, 1, 4, 3, 2.
