@@ -87,3 +87,38 @@ function discountPrices(prices, discount){
 ---
 
 ## Data Types
+
+13. Given the above Object, write the notation for: (These should be in your part1.md)
+- Accessing the value of the name property in the student object
+  - `student.name`
+- Accessing the value of the Grad Year property in the student object
+  - `student["Grad Year"]`
+- Calling the function for the greeting property in the student object
+  - `student.greeting();`
+- Accessing the name property of the object in the Favorite Teacher property in student
+  - `student["Favorite Teacher"].name`
+- Access the first index in the array of the courseLoad property of the student object
+  - `student.courseLoad[0]`
+
+---
+
+## Basic Operators & Type Conversion
+
+14. Arithmetic
+
+- ‘3’ + 2
+  - `32` is the result. This is because + acts as the concatenation operator here, since the first operand was a char. Thus, this output is a string.
+- ‘3’ - 2
+  - `1` is the result. This is because the - operator converts the first operand to a number, and gives the result of 3 - 2 (as numbers).
+- 3 + null
+  - Here, the answer is `3`. This is because this time, the + operator is the addition operator (as there are no strings), and when null is converted to a number, it has the numerical value of 0. Thus, 3 + 0 = 3, and that's what's returned.
+- ‘3’ + null
+  - Here, the answer is `3null`. This time, the + operator is the concatenation operator again, since the left hand side is a string. Thus, we concatenate "3" with the converted string value of null, which is "null", giving us `3null`.
+- true + 3
+  - `4` is the result. With no strings, the + operator acts as an addition operator, and converts true to it's numerical value of 1, and adds that with 3. Thus, we get `4` (as a number).
+- false + null
+  - Here, we get `0`. This is because the + operator acts as an addition operator again (seeing no strings), and so we convert both "false" and "null" to their numerical values, which are both 0. 0 + 0 = `0`, so we return that as our answer.
+- “3” + undefined
+  - `3undefined`. Again, since there is a string, + is just string concatenation. Thus, it converts undefined to it's string value of "undefined", and then performs "3" + "undefined" which gives `3undefined`.
+- “3” - undefined
+  - Here, the answer is `NaN`. When the - operator converts both sides to numbers for subtraction, the left side "3" becomes 3, and the right side undefined becomes `NaN`. When we try to perform 3 - `NaN`, we get `NaN`. Thus, that's our answer.
