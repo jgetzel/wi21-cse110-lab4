@@ -107,7 +107,7 @@ function discountPrices(prices, discount){
 14. Arithmetic
 
 - ‘3’ + 2
-  - `32` is the result. This is because + acts as the concatenation operator here, since the first operand was a char. Thus, this output is a string.
+  - `32` is the result. This is because + acts as the concatenation operator here, since the first operand was a string. Thus, this output is a string.
 - ‘3’ - 2
   - `1` is the result. This is because the - operator converts the first operand to a number, and gives the result of 3 - 2 (as numbers).
 - 3 + null
@@ -122,3 +122,44 @@ function discountPrices(prices, discount){
   - `3undefined`. Again, since there is a string, + is just string concatenation. Thus, it converts undefined to it's string value of "undefined", and then performs "3" + "undefined" which gives `3undefined`.
 - “3” - undefined
   - Here, the answer is `NaN`. When the - operator converts both sides to numbers for subtraction, the left side "3" becomes 3, and the right side undefined becomes `NaN`. When we try to perform 3 - `NaN`, we get `NaN`. Thus, that's our answer.
+
+15. Comparison
+- ‘2’ > 1
+  - `true`. This is because the string "2" becomes the number 2.
+- ‘2’ < ‘12’
+  - `false`. These two strings are compared letter by letter (lexicographical order). Because the first characters are compared first, "2" and "1", and one comes before 2 lexicographically, it shows "2" > "12", and thus the statement returns false.
+- 2 == ‘2’
+  - `true`. This is because the == statement converts the string to a number before comparing, and so "2" becomes 2. Since 2 == 2, we return true.
+- 2 === ‘2’
+  - `false`. The === sign does not perform the conversion that == does. Thus, if the two types are different it returns false. In this case they are, so we get this.
+- true == 2
+  - `false`. The numerical value of true is 1, so when we do this conversion, we see that 1 == 2 is false, thus we return that.
+- true === Boolean(2)
+  - `true`. Finally, there is no conversion to be done here. Boolean(number) is true if number is any number other than 0, without conversion. Thus, we get that true === true, is true.
+
+16.  Explain the difference between the == and === operators.
+- == Checks if the values are the same after converting them to the same type, wheras === will return false if they are of different types, and will not attempt conversion.
+
+---
+
+## Conditionals
+
+17. From the code snippet below, explain what gets printed and why.
+
+```js
+if(2 == true){
+    console.log('Hello');
+} else if (2){
+    console.log('How are you?');
+} else{
+    console.log('Goodbye');
+}
+```
+
+In this code, `How are you?` will be printed. This is because the first statement will evaluate to false, due to "true" holding the numerical value of 1 when converted. The second statement, 2, evaluates to "true", since anything other than 0, NaN, undefined, etc, gets evaluated to true. Thus, we print `How are you?` and skip the else statement.
+
+---
+
+## Loops
+
+
